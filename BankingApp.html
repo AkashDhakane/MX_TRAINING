@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Banking app</title>
+    <script>
+      var bankingApp = {
+        balance: 0,
+        create_ac: function (amount) {
+          if (this.balance == 0) {
+            this.balance = this.balance + amount;
+            document.write("New ac is created with balance ", this.balance);
+          } else {
+            this.balance = this.balance + amount;
+            document.write("Account already exist added to existing ac:"+this.balance);
+          }
+        },
+        withdraw: function (amount) {
+          if (this.balance > amount) {
+            this.balance = this.balance - amount;
+            document.write("Debited amount:"+amount+" current balance"+ this.balance);
+          } else {
+            document.write("insufficient Funds ");
+          }
+        },
+        deposit: function (amount) {
+          this.balance = this.balance + amount;
+          document.write("amount Credited successfully <br> ");
+          document.write("Current balance:", this.balance);
+        },
+      };
+
+      bankingApp.create_ac(30000);
+      document.write("<br />");
+      bankingApp.withdraw(12000);
+      document.write("<br />");
+      bankingApp.deposit(40000);
+    </script>
+  </head>
+  <body></body>
+</html>

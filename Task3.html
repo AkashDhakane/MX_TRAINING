@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var Tasks = {
+        arr: [],
+        index: 0,
+
+        add: function (t) {
+            this.arr.push(t)
+        },
+        print : function(){
+            this.arr.forEach(Element=>document.write(Element+" "))
+        },
+        remove: function () {
+            this.arr.splice(this.index, 1)
+        }
+    };
+
+    Tasks.add("Dancing");
+    Tasks.add("Cricket");
+    Tasks.add("Music");
+    Tasks.add("Coding");
+    Tasks.add("singing");
+
+    document.write("Before removing <br> ");
+    Tasks.print();
+    document.write("<br> After Removing  <br> ");
+    Tasks.remove(Tasks.index = 3);
+    Tasks.print();
+</script>
+</head>
+<body>
+    
+</body>
+</html>
