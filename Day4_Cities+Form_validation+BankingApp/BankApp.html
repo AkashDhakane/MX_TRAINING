@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="Bank.css"> -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      function Create_account() {
+        let initial_Amount = document.getElementById("amount").value;
+        if (initial_Amount == "") {
+          alert("Your amount is empty ");
+        } else if (initial_Amount < 5000) {
+          alert("min 5000 is needed to create an account");
+        } else {
+          document.getElementById("currentbalance").innerText = initial_Amount;
+          document.getElementById("amount").value = "";
+          alert("account created");
+        }
+      }
+
+      function deposit() {
+        let total_balance = document.getElementById("currentbalance").innerText;
+        let deposit_Amount = document.getElementById("amount").value;
+        let balance_after_deposit =
+          parseInt(total_balance) + parseInt(deposit_Amount);
+        if (deposit_Amount == "") {
+          alert("Your amount is empty");
+        } else {
+          document.getElementById("currentbalance").innerText =
+            balance_after_deposit;
+          document.getElementById("amount").value = "";
+          alert("amount credited successfully");
+        }
+      }
+      function withdraw() {
+        let balance = document.getElementById("currentbalance").innerText;
+        let withdraw = document.getElementById("amount").value;
+        let current_bal = balance - withdraw;
+        if (withdraw == "") {
+          alert("Amount can't be empty");
+        } else if (parseInt(withdraw) > parseInt(balance)) {
+          alert("Insufficient funds");
+        } else {
+          document.getElementById("currentbalance").innerText = current_bal;
+          document.getElementById("amount").value = "";
+          alert("Withdrawn successfully");
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-image: linear-gradient(
+          to right,
+          rgba(107, 6, 238, 0),
+          rgb(255, 0, 234)
+        );
+      }
+
+      #amount {
+        width: 200px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container"  align="center">
+      <div id="abc">
+        <form>
+          <div class="form-group">
+            <h1>Welcome to E-Banking !</h1>
+            <h2>Current Balance: &emsp;<span id="currentbalance">0</span></h2>
+            <label><h2>Enter Amount</h2> </label>
+            <input
+              type="number"
+              class="form-control"
+              id="amount"
+              placeholder="Enter Amount "
+            />
+            <small id="suggest" class="form-text text-muted"></small>
+            <h6>for creating ac minimum 5000 req</h6>
+          </div>
+
+          <button
+            type="button"
+            onclick="Create_account()"
+            class="btn btn-primary"
+          >
+            Create account
+          </button>
+          <button type="button" onclick="deposit()" class="btn btn-primary">
+            Deposit Funds
+          </button>
+          <button type="button" onclick="withdraw()" class="btn btn-success">
+            Withdraw Funds
+          </button>
+        </form>
+      </div>
+    </div>
+    <script></script>
+  </body>
+</html>
