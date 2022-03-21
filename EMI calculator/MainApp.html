@@ -1,0 +1,177 @@
+<!doctype html>
+
+    <html class="no-js" lang="en">
+        <head>
+            <title> Bootstrap 4 Form Validation with Validator.js Example | positronx.io</title>
+            <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet"></link>
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/1000hz-bootstrap-validator/0.11.9/validator.min.js"></script>
+            <style>
+                body {
+                    background: #EECDA3;
+                    background: -webkit-linear-gradient(to top, #1569e7, #1a52cc);
+                    background: linear-gradient(to top, #0573da, #4369e6);
+                }
+                .container {
+                    max-width: 800px;
+                }
+                .has-error label,
+                .has-error input,
+                .has-error textarea {
+                    color: red;
+                    border-color: red;
+                }
+                .list-unstyled li {
+                    font-size: 13px;
+                    padding: 4px 0 0;
+                    color: red;
+                }
+                .card-body {
+    background-color: orange;
+}
+                button[type="button"]:hover{
+        background-color: blueviolet;
+        border: none;
+    }
+    
+    #head{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-weight: bolder;
+
+    }
+   label, #loan,#int,#years,#a,#total,#Monthly,#yearly{
+        font-family: 'Times New Roman', Times, serif;
+        font-weight: bolder;
+    
+    }
+                
+            </style>
+           <script>
+               var p;
+               var r;
+               var n;
+               var loan;
+               var year;
+            function f1() {
+               p = parseInt(document.getElementById("loan").value);
+    
+                r = parseInt(document.getElementById("int").value);
+                n = parseInt(document.getElementById("years").value);
+                loan = true;
+                year = true;
+                if (p < 1000) {
+                    document.getElementById("s1").innerHTML = "Enter amount greater  than 1000";
+    
+                    loan = false;
+                }
+                if (n < 2 || n > 15) {
+                    document.getElementById("s2").innerHTML = "Enter period between 2 to 15 years";
+                    year = false;
+                }
+              
+            }
+            function f2()
+            {
+                f1();
+                if (loan == true && year == true) {
+                    document.getElementById("Monthly").value = Math.round(((((n * p * r) / 100 + p) / n) / 12));
+                }
+                
+            }
+            function f3()
+            {
+                f1();
+                if (loan == true && year == true) {
+                    document.getElementById("a").value = Math.round(((n * p * r) / 100));//total  intresrt
+                }
+                
+            }
+            function f4()
+            {
+                f1();
+                if (loan == true && year == true) {
+                    document.getElementById("total").value = Math.round((n * p * r) / 100 + p);//total amount to be paid
+                }  
+            }
+            function f5()
+            {
+                f1();
+                if (loan == true && year == true) {
+                    document.getElementById("yearly").value = (Math.round((n * p * r) / 100 + p))/n;//total amount to be paid
+                }  
+            }
+        </script>
+        </head>
+        <body>
+            <div class="container mt-5">
+                <div class="card">
+                    <h4 class="card-header text-center" id="head">EMI CALCULATOR</h5>
+                    <div class="card-body">
+                        <form role="form" data-toggle="validator">
+        
+                            <div class="form-group">
+                                <label>Principle Amount</label>
+                                <input type="text" class="form-control" data-error="Please enter amount" id="loan" placeholder="Amount" required>
+                                <!-- Error -->
+                                <div class="help-block with-errors" id="s1"></div>
+                            </div>
+                        
+                            <div class="form-group">
+                                <label>Interest Rate</label>
+                                <input type="text" class="form-control" id="int" placeholder="Interest rate" required>
+                                <!-- Error -->
+                                <div class="help-block with-errors"></div>
+                            </div>
+                            <div class="form-group">
+                                <label>Years</label>
+                                <input type="year" class="form-control" id="years" placeholder="Years" required>
+                                <!-- Error -->
+                                <div class="help-block with-errors" id="s2"></div>
+                            </div>
+                            <div class="form-group">
+                                <button type="button" onclick="f2()" class="btn btn-primary ">EMI per Month</button>
+                            
+                                <button type="button" onclick="f5()" class="btn btn-primary ">Yearly</button>
+                            
+                                <button type="button" onclick="f4()" class="btn btn-primary">Total Amount</button>
+                                <button type="button" onclick="f3()" class="btn btn-primary">Total Interest</button>
+                            </div>
+                            <div class="form-group">
+                                <label>Monthly</label>
+                                <input type="numb" class="form-control" id="Monthly"   readonly >
+                                <!-- Error -->
+                                <div class="help-block with-errors"></div>
+                            
+                                <label>Total Amount to be paid</label>
+                               
+                                    <input type="text"  class="form-control" id="total"
+                                        data-error="Have atleast 4 characters"  readonly />
+                                    <!-- Error -->
+                                    <div class="help-block with-errors"></div>
+                           
+                           
+                                <label>Total Interest</label>
+                             
+                                    <input type="text" class="form-control" id="a"
+                                      
+                                        readonly />
+                                    <!-- Error -->
+                                    <div class="help-block with-errors"></div>
+                                
+                                <label>Yearly</label>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="yearly"
+                                      
+                                        readonly />
+                                    <!-- Error -->
+                                    <div class="help-block with-errors"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        
+</body>
+
+</html>
